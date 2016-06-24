@@ -3,10 +3,11 @@ var app = angular.module('myapp', []);
 app.controller('appCtrl', function($scope) {
 	$scope.globalNavbar = '/_files/tmp/global_header.html';
 	$scope.globalFooter = '/_files/tmp/global_footer.html';
-	$scope.globalMenu = [
-		{ link: '#', ja: 'こだわり', en: 'Persistence' }
-	]
+	$.getJSON('/_files/json/global-menu.json', function(json) {
+		$scope.globalMenu = json;
+	});
 });
+
 
 const d = new Date();
 const now = {
@@ -18,7 +19,6 @@ const now = {
 	i: d.getMinutes(),
 	s: d.getSeconds()
 }
-console.log(now);
 
 function getCal(m = now.m, y = now.y) {
 	if(m > 12) {
@@ -40,7 +40,6 @@ function getCal(m = now.m, y = now.y) {
 			day++;
 			json_tmp.push(day);
 		}
-		console.log(json_tmp);
 		json.push(json_tmp);
 	}
 	for(let end=true; end; ) {
@@ -55,7 +54,6 @@ function getCal(m = now.m, y = now.y) {
 				}
 			}
 		}
-		console.log(json_tmp);
 		json.push(json_tmp);
 	}
 	return json;
