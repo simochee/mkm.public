@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>村村村</title>
+	<link rel="stylesheet" href="/_files/css/style.css">
+	<link rel="stylesheet" href="/_files/css/index.css">
+</head>
+<body ng-controller="appCtrl">
+
+	<ng-include src="globalNavbar"></ng-include>
+
+	<header class="index-header windowHeight" ng-controller="indexHeaderCtrl">
+		<ul class="bg-slide">
+			<li class="slide-item" ng-repeat="img in headerImg" style="background-image: url(/index/header/{{img}})"></li>
+		</ul>
+		<div class="header-nav">
+			<ul class="left-nav nav-list">
+				<li class="nav-item" ng-repeat="item in leftNav"><a ng-href="{{item.link}}" class="nav-anchor">{{item.name}}</a></li>
+			</ul>
+			<div class="header-brand">村村村</div>
+			<ul class="right-nav nav-list">
+				<li class="nav-item" ng-repeat="item in rightNav"><a ng-href="{{item.link}}" class="nav-anchor">{{item.name}}</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="main-area pd-navbar">
+		<div class="container">
+			<div class="main-content left">
+				<h3>今月のおすすめ<span class="en">Monthly Recommend</span></h3>
+				<div class="recommend" ng-controller="recommendCtrl">
+					<div class="pic">
+						<img alt="{{name}}" ng-src="{{img}}">
+						<div class="details">
+							<div class="name">{{name}}</div>
+							<div class="price">{{price}}円</div>
+							<p class="comment">{{comment}}</p>
+						</div>
+					</div>
+				</div>
+				<a href="menu.html" class="btn-ghost">ほかのメニューを見る</a>
+			</div>
+			<div class="sidebar right">
+				<h4>営業日カレンダー</h4>
+				<div class="open-calendar .two-month" ng-controller="calendarCtrl">
+					<div class="controller">
+						
+					</div>
+					<div class="year">
+						<span class="this">{{year}}</span>
+						<span class="next">{{n-year}}</span>
+					</div>
+					<div class="month">
+						<span class="this">{{month}}</span>
+						<span class="next">{{n-month}}</span>
+					</div>
+					<div class="calendar">
+						<table class="this">
+							<thead>
+								<tr>
+									<th>S</th>
+									<th>M</th>
+									<th>T</th>
+									<th>W</th>
+									<th>T</th>
+									<th>F</th>
+									<th>S</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="week in monthThis">
+									<td ng-repeat="day in week track by $index">{{day}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="calendar">
+						<table class="next">
+							<thead>
+								<tr>
+									<th>S</th>
+									<th>M</th>
+									<th>T</th>
+									<th>W</th>
+									<th>T</th>
+									<th>F</th>
+									<th>S</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="week in monthNext">
+									<td ng-repeat="day in week track by $index">{{day}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ng-include src="globalFooter"></ng-include>
+
+	<script src="/_files/js/angular.min.js"></script>
+	<script src="/_files/js/common.js"></script>
+	<script src="/_files/js/index.js"></script>
+
+</body>
+</html>
