@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="ja" ng-app="myapp">
+<html lang="ja" ng-app="myapp" ng-controller="appCtrl">
 <head>
 	<meta charset="UTF-8">
-	<title>村村村</title>
-	<link rel="stylesheet" href="/_files/css/style.css">
-	<link rel="stylesheet" href="/_files/css/index.css">
+	<title ng-cloak>トップページ - {{pageTitleSub}}</title>
+	<link rel="stylesheet" href="/common/css/ionicons.min.css">
+	<link rel="stylesheet" href="/common/css/common.css">
+	<link rel="stylesheet" href="/common/css/index.css">
 </head>
-<body ng-controller="appCtrl">
+<body>
 
 	<ng-include src="globalNavbar"></ng-include>
 
-	<header class="index-header windowHeight" ng-controller="indexHeaderCtrl">
-		<ul class="bg-slide">
+	<header class="index-header" ng-controller="indexHeaderCtrl" ng-style="windowHeight">
+		<!-- <ul class="bg-slide">
 			<li class="slide-item" ng-repeat="img in headerImg" style="background-image: url(/index/header/{{img}})"></li>
-		</ul>
+		</ul> -->
 		<div class="header-nav">
 			<ul class="left-nav nav-list">
 				<li class="nav-item" ng-repeat="item in leftNav"><a ng-href="{{item.link}}" class="nav-anchor">{{item.name}}</a></li>
@@ -31,32 +32,32 @@
 				<h3>今月のおすすめ<span class="en">Monthly Recommend</span></h3>
 				<div class="recommend" ng-controller="recommendCtrl">
 					<div class="pic">
-						<img alt="{{name}}" ng-src="{{img}}">
-						<div class="details">
-							<div class="name">{{name}}</div>
-							<div class="price">{{price}}円</div>
-							<p class="comment">{{comment}}</p>
-						</div>
+						<img alt="{{rec.name}}" ng-src="/menu/thumb/{{rec.img}}">
+					</div>
+					<div class="details">
+						<div class="name">{{rec.name}}</div>
+						<div class="price">{{rec.price}}円</div>
+						<p class="comment" ng-repeat="line in rec.comment">{{line}}</p>
 					</div>
 				</div>
-				<a href="menu.html" class="btn-ghost">ほかのメニューを見る</a>
+				<a href="/menu" class="btn ghost">ほかのメニューを見る</a>
 			</div>
 			<div class="sidebar right">
 				<h4>営業日カレンダー</h4>
-				<div class="open-calendar .two-month" ng-controller="calendarCtrl">
+				<div class="opening-calendar" ng-class="showMonth" ng-controller="calendarCtrl">
 					<div class="controller">
-						
+						<button class="btn reset" ng-click="toggleMonth()"><span class="ion-ios-arrow-forward"></span></button>
 					</div>
 					<div class="year">
 						<span class="this">{{year}}</span>
-						<span class="next">{{n-year}}</span>
+						<span class="next">{{nYear}}</span>
 					</div>
 					<div class="month">
 						<span class="this">{{month}}</span>
-						<span class="next">{{n-month}}</span>
+						<span class="next">{{nMonth}}</span>
 					</div>
 					<div class="calendar">
-						<table class="this">
+						<table class="this" id="oc{{year}}{{month}}">
 							<thead>
 								<tr>
 									<th>S</th>
@@ -70,13 +71,11 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="week in monthThis">
-									<td ng-repeat="day in week track by $index">{{day}}</td>
+									<td ng-repeat="day in week track by $index" id="oc{{year}}{{month}}{{day}}">{{day}}</td>
 								</tr>
 							</tbody>
 						</table>
-					</div>
-					<div class="calendar">
-						<table class="next">
+						<table class="next" id="oc{{nYear}}{{nMonth}}">
 							<thead>
 								<tr>
 									<th>S</th>
@@ -95,6 +94,11 @@
 							</tbody>
 						</table>
 					</div>
+					<div class="means">
+						<span class="holiday">休業日</span>
+						<span class="close">営業時間変更</span>
+						<span class="details"><a href="/menu">詳しくはこちら</a></span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -102,9 +106,11 @@
 
 	<ng-include src="globalFooter"></ng-include>
 
-	<script src="/_files/js/angular.min.js"></script>
-	<script src="/_files/js/common.js"></script>
-	<script src="/_files/js/index.js"></script>
+	<script src="/common/js/angular.min.js"></script>
+	<script src="/common/js/angular-route.min.js"></script>
+	<script src="/common/js/jquery.min.js"></script>
+	<script src="/common/js/common.js"></script>
+	<script src="/common/js/index.js"></script>
 
 </body>
 </html>

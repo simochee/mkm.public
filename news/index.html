@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myapp" ng-controller="appCtrl">
+<head>
+	<meta charset="UTF-8">
+	<title ng-cloak>トップページ - {{pageTitleSub}}</title>
+	<link rel="stylesheet" href="/common/css/ionicons.min.css">
+	<link rel="stylesheet" href="/common/css/common.css">
+	<link rel="stylesheet" href="/common/css/menu.css">
+</head>
+<body>
+
+	<ng-include src="globalNavbar"></ng-include>
+
+	<div class="main-area">
+		<div class="container" ng-controller="newsCtrl">
+			<ng-include src="contentHeader"></ng-include>
+			<div class="main-content left">
+				<div ng-view></div>
+			</div>
+			<div class="sidebar right">
+				<h4>本日の営業時間</h4>
+				<div class="text-large center">
+					<span ng-if="open == 'holiday'">本日は休業日です</span>
+					<span ng-if="open == 'close'">営業時間変更日です</span>
+					<span ng-if="open == 'normal'">17:00〜22:00</span>
+				</div>
+				<div class="text-normal center">
+					<a href="#" ng-if="open == 'close'" >詳しくはこちら</a>
+					<span ng-if="open == 'normal'">（LO：21:30）</span>
+				</div>
+				<h4>カテゴリー</h4>
+				<ul class="list no-mark">
+					<li ng-repeat="item in data.categories">
+						<a ng-if="item.count > 0" href="#">{{item.name}} ({{item.count}})</a>
+						<span ng-if="item.count == 0" class="no-link">{{item.name}}</span>
+					</li>
+				</ul>
+				<h4>アーカイブ</h4>
+				<ul class="list no-mark">
+					<li ng-repeat="item in data.archives">
+						<a href="#" ng-if="item.count > 0">{{item.year}} ({{item.count}})</a>
+						<span ng-if="item.count == 0" class="no-link">{{item.year}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<ng-include src="globalFooter"></ng-include>
+
+	<script src="/common/js/angular.min.js"></script>
+	<script src="/common/js/angular-route.min.js"></script>
+	<script src="/common/js/jquery.min.js"></script>
+	<script src="/common/js/common.js"></script>
+	<script src="/common/js/news.js"></script>
+
+</body>
+</html>

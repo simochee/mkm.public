@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myapp" ng-controller="appCtrl">
+<head>
+	<meta charset="UTF-8">
+	<title ng-cloak>トップページ - {{pageTitleSub}}</title>
+	<link rel="stylesheet" href="/common/css/ionicons.min.css">
+	<link rel="stylesheet" href="/common/css/common.css">
+	<link rel="stylesheet" href="/common/css/menu.css">
+</head>
+<body>
+
+	<ng-include src="globalNavbar"></ng-include>
+
+	<div class="main-area">
+		<div class="container" ng-controller="menuCtrl">
+			<ng-include src="contentHeader"></ng-include>
+			<div class="main-content left">
+				<div ng-repeat="genre in menuList">
+					<h3><span class="ja">{{genre.ja}}</span><span class="en">{{genre.en}}</span></h3>
+					<div ng-repeat="cat in genre.categories">
+						<h4 data-anchor="catId{{$index}}"><span class="ja">{{cat.ja}}</span><span class="en">{{cat.en}}</span></h4>
+						<ul class="menu-list">
+							<li ng-repeat="item in cat.items">
+								<div class="menu-left">
+									<h5>{{item.name}}</h5>
+									<div class="price" ng-show="item.price">{{item.price}}円</div>
+									<ul class="sub" ng-show="item.sub">
+										<li class="sub-item" ng-repeat="sub in item.sub">
+											<div class="name">{{sub.name}}</div>
+											<div class="price">{{sub.price}}円</div>
+										</li>
+									</ul>
+									<div class="comment">
+										<p ng-repeat="line in item.comment">{{line}}</p>
+									</div>
+								</div>
+								<div class="menu-right" ng-show="item.img">
+									<img alt="{{item.name}}" ng-src="/menu/thumb/{{item.img}}" class="thumb">
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="sidebar right">
+				<div class="menu-tree" ng-repeat="genre in menuList">
+					<div class="tree-header"><span>{{genre.short}}</span></div>
+					<ul class="tree-list">
+						<li class="list-item" ng-repeat="cat in genre.categories"><a href="#" data-target="catId{{$index}}">{{cat.ja}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ng-include src="globalFooter"></ng-include>
+
+	<script src="/common/js/angular.min.js"></script>
+	<script src="/common/js/angular-route.min.js"></script>
+	<script src="/common/js/jquery.min.js"></script>
+	<script src="/common/js/common.js"></script>
+	<script src="/common/js/menu.js"></script>
+
+</body>
+</html>

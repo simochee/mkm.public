@@ -1,0 +1,14 @@
+.sidebar {
+	h4 {
+		display: block;
+		margin-top: 30px;
+		padding: 12px 10px;
+		font-size: 20px;
+		@include serif;
+		text-align: center;
+		color: #fff;
+		&:first-child {
+			margin-top: 15px;
+		}
+	}
+}

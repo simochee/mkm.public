@@ -1,0 +1,22 @@
+[
+	{
+		"link": "/news",
+		"ja": "おしらせ",
+		"en": "News"
+	},
+	{
+		"link": "/menu",
+		"ja": "お品書き",
+		"en": "Menu"
+	},
+	{
+		"link": "/info",
+		"ja": "店舗案内",
+		"en": "Information"
+	},
+	{
+		"link": "/reserve",
+		"ja": "ご予約",
+		"en": "Reservation"
+	}
+]

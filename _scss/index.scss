@@ -1,0 +1,237 @@
+@import "compass";
+@import "color-scheme";
+@import "fonts";
+
+.index-header {
+	position: relative;
+	width: 100%;
+	background: center center;
+	background-size: cover;
+	z-index: 9999;
+	@import "index-header-nav";
+	// @import "index-header-slider";
+	.scroller {
+		position: absolute;
+		left: -50%;
+		bottom: 0;
+		display: block;
+		width: 80px;
+		height: 80px;
+		margin-left: -40px;
+		background: #000;
+	}
+}
+
+.recommend {
+	width: 680px;
+	margin: 0 auto;
+	.pic {
+		img {
+			width: 680px;
+		}
+	}
+	.details {
+		overflow: hidden;
+		margin: 20px 16px;
+		.name {
+			float: left;
+			margin-bottom: 10px;
+			font-size: 20px;
+			color: $orange;
+			@include serif;
+		}
+		.price {
+			float: right;
+			color: #aaa;
+			font-size: 14px;
+		}
+		.comment {
+			clear: both;
+			margin: 6px 20px 0;
+			font-size: 14px;
+			color: #ccc;
+		}
+	}
+}
+
+.opening-calendar {
+	position: relative;
+	width: 100%;
+	margin-top: 15px;
+	color: #fff;
+	text-align: center;
+	.controller {
+		position: absolute;
+		top: 3px;
+		right: 0;
+		width: 60px;
+		height: 60px;
+		.btn {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			outline: none;
+			font-size: 30px;
+			line-height: 30px;
+			cursor: pointer;
+			span {
+				position: relative;
+				left: 0;
+				display: block;
+				@include transition(transform .5s ease, left .2s ease);
+			}
+		}
+	}
+	.year {
+		height: 16px;
+		font-size: 13px;
+		line-height: 16px;
+	}
+	.month {
+		height: 50px;
+		font-size: 30px;
+		line-height: 50px;
+	}
+	.year,
+	.month {
+		overflow: hidden;
+		position: relative;
+		width: 60px;
+		margin: 0 auto;
+		& > span {
+			display: block;
+			position: absolute;
+			width: 60px;
+			@include transition(left .5s ease);
+		}
+	}
+	.calendar {
+		overflow: hidden;
+		position: relative;
+		height: 263px;
+		.this,
+		.next {
+			position: absolute;
+			top: 0;
+			width: 240px;
+			@include transition(left .5s ease);
+			th, td {
+				box-sizing: border-box;
+				text-align: center;
+				&:not(:nth-child(7n)) {
+					border-right: 1px solid  #111;
+				}
+			}
+			th {
+				height: 25px;
+				padding-top: 10px;
+				padding-bottom: 8px;
+				line-height: 25px;
+				font-size: 14px;
+			}
+			td {
+				height: 35px;
+				line-height: 35px;
+				font-size: 15px;
+				color: #969696;
+				&.today,
+				&.holiday,
+				&.close {
+					font-weight: bold;
+					color: $green;
+				}
+				&.today {
+					text-decoration: underline;
+				}
+				&.holiday {
+					color: $orange;
+				}
+			}
+			tr:last-child td {
+				padding-bottom: 10px;
+			}
+		}
+		.undetermined {
+			&::after {
+				content: "更新までしばらくお待ちください";
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(#000, 0.8);
+				text-align: center;
+				line-height: 263px;
+			}
+		}
+	}
+	&.this {
+		.this {
+			left: 0;
+		}
+		.year > .next,
+		.month > .next {
+			left: 60px;
+		}
+		.calendar > .next {
+			left: 240px;
+		}
+		.controller {
+			span {
+				@include transform(rotate(0deg));
+			}
+			&:hover {
+				span {
+					left: 10px;
+				}
+			}
+		}
+	}
+	&.next {
+		.next {
+			left: 0;
+		}
+		.year > .this,
+		.month > .this {
+			left: -60px;
+		}
+		.calendar > .this {
+			left: -240px;
+		}
+		.controller {
+			span {
+				@include transform(rotate(180deg));
+			}
+			&:hover {
+				span {
+					left: -10px;
+				}
+			}
+		}
+	}
+	.means {
+		margin-top: 15px;
+		& > span {
+			font-size: 14px;
+		}
+		.holiday {
+			color: $orange;
+		}
+		.close {
+			color: $green;
+		}
+		.details {
+			display: block;
+			margin-top: 5px;
+			a {
+				color: #aaa;
+				font-size: 13px;
+				text-decoration: none;
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+	}
+}

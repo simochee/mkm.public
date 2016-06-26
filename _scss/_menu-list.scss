@@ -1,0 +1,52 @@
+.menu-list {
+	width: 640px;
+	margin: 0 auto;
+	li {
+		overflow: hidden;
+		margin: 15px 0;
+		.menu-left {
+			float: left;
+			width: 420px;
+			padding: 8px 0;
+			h5 {
+				float: left;
+				font-size: 20px;
+				@include serif;
+				color: $orange;
+			}
+			.price {
+				float: right;
+				font-size: 14px;
+				font-weight: bold;
+				color: #aaa;
+			}
+			.sub {
+				float: right;
+				line-height: 30px;
+				.sub-item {
+					margin: 0;
+					padding: 0;
+					.name {
+						float: left;
+						margin-right: 10px;
+						text-align: right;
+					}
+				}
+			}
+			.comment {
+				clear: both;
+				padding: 8px 14px;
+				font-size: 13px;
+				line-height: 20px;
+			}
+		}
+		.menu-right {
+			float: right;
+			width: 200px;
+			.thumb {
+				width: 200px;
+				height: 150px;
+			}
+		}
+	}
+}

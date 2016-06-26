@@ -1,0 +1,30 @@
+{
+	"categories": [
+		{
+			"name": "おしらせ",
+			"count": 4
+		},
+		{
+			"name": "今月の営業日",
+			"count": 5
+		},
+		{
+			"name": "おすすめ",
+			"count": 2
+		},
+		{
+			"name": "日記",
+			"count": 0
+		}
+	],
+	"archives": [
+		{
+			"year": 2016,
+			"count": 10
+		},
+		{
+			"year": 2017,
+			"count": 3
+		}
+	]
+}
